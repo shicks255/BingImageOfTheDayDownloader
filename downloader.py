@@ -6,13 +6,14 @@ import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+from config import downloadLocation
+from config import webdriverPath
+
 url = 'https://www.bing.com/'
 
 chromeOptions = webdriver.ChromeOptions()
-downloadLocation = "F:/newBingBackgrounds"
 prefs = {"download.default_directory" : downloadLocation}
 chromeOptions.add_experimental_option("prefs", prefs)
-webdriverPath = "C:/Python/chromedriver.exe"
 
 # Create Selenium WebDriver
 browser = webdriver.Chrome(executable_path = webdriverPath, chrome_options = chromeOptions)
