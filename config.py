@@ -1,5 +1,5 @@
 
-# F:/newBingBackgrounds
+# F:\\newBingBackgrounds
 downloadLocation = ""
 
 # selenium webdriver for chrome

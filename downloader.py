@@ -25,13 +25,14 @@ time.sleep(2)
 # Scroll down a bit
 html = browser.find_element_by_tag_name("html");
 html.send_keys(Keys.DOWN)
-time.sleep(3)
+time.sleep(2)
 html.send_keys(Keys.DOWN)
-time.sleep(3)
+time.sleep(2)
 html.send_keys(Keys.DOWN)
-time.sleep(3)
+time.sleep(2)
 html.send_keys(Keys.DOWN)
-time.sleep(3)
+time.sleep(2)
+html.send_keys(Keys.DOWN)
 
 # find button to download image of day
 try:
