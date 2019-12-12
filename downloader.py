@@ -36,7 +36,7 @@ html.send_keys(Keys.DOWN)
 
 # find button to download image of day
 try:
-    submit = browser.find_element_by_id('vs_bs_download')
+    submit = browser.find_element_by_css_selector('li.item.download').find_elements_by_tag_name("a")[0]
     submit.click()
 except selenium.common.exceptions.NoSuchElementException as e:
     print('element not found')
