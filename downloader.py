@@ -8,12 +8,14 @@ from selenium.webdriver.common.keys import Keys
 
 from config import downloadLocation
 from config import webdriverPath
+from config import chromeLocation
 
 url = 'https://www.bing.com/'
 
 chromeOptions = webdriver.ChromeOptions()
 prefs = {"download.default_directory" : downloadLocation}
 chromeOptions.add_experimental_option("prefs", prefs)
+chromeOptions.binary_location = chromeLocation
 
 # Create Selenium WebDriver
 browser = webdriver.Chrome(executable_path = webdriverPath, chrome_options = chromeOptions)
