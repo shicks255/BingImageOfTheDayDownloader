@@ -36,7 +36,7 @@ try:
 
     hoverDiv = browser.find_element(by=By.CLASS_NAME, value='musCard')
     downloadLink = browser.find_element(by=By.CLASS_NAME, value='downloadLink')
-    action.move_to_element(hoverDiv).move_to_element(downloadLink).click().perform()
+    action.move_to_element(hoverDiv).move_to_element(downloadLink).click(downloadLink).perform()
 
 except selenium.common.exceptions.NoSuchElementException as e:
     print('element not found')
