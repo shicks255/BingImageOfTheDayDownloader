@@ -1,45 +1,43 @@
 # !python3
 
 import time
+
 import selenium
 import sys
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
 from config import downloadLocation
-from config import webdriverPath
-from config import chromeLocation
 
 url = 'https://www.bing.com/'
 
 chromeOptions = webdriver.ChromeOptions()
-prefs = {"download.default_directory" : downloadLocation}
+prefs = {"download.default_directory": downloadLocation}
 chromeOptions.add_experimental_option("prefs", prefs)
-chromeOptions.binary_location = chromeLocation
 
 # Create Selenium WebDriver
-browser = webdriver.Chrome(executable_path = webdriverPath, chrome_options = chromeOptions)
+browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chromeOptions)
 browser.get(url)
 
 # wait a second
 time.sleep(2)
 
 # Scroll down a bit
-html = browser.find_element_by_tag_name("html");
+html = browser.find_element(by=By.TAG_NAME, value="html");
 html.send_keys(Keys.DOWN)
 time.sleep(2)
-html.send_keys(Keys.DOWN)
-time.sleep(2)
-html.send_keys(Keys.DOWN)
-time.sleep(2)
-html.send_keys(Keys.DOWN)
-time.sleep(2)
-html.send_keys(Keys.DOWN)
 
-# find button to download image of day
 try:
-    submit = browser.find_element_by_css_selector('li.item.download').find_elements_by_tag_name("a")[0]
-    submit.click()
+    action = ActionChains(browser)
+
+    hoverDiv = browser.find_element(by=By.CLASS_NAME, value='musCard')
+    downloadLink = browser.find_element(by=By.CLASS_NAME, value='downloadLink')
+    action.move_to_element(hoverDiv).move_to_element(downloadLink).click().perform()
+
 except selenium.common.exceptions.NoSuchElementException as e:
     print('element not found')
     browser.close()
@@ -52,5 +50,4 @@ time.sleep(10)
 
 browser.close()
 browser.quit()
-
-
+sys.exit()
